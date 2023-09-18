@@ -1,0 +1,3 @@
+﻿  GraphicsEngine.cpp
+GraphicsEngine.obj : error LNK2019: unresolved external symbol D3D11CreateDevice referenced in function "public: bool __cdecl GraphicsEngine::init(void)" (?init@GraphicsEngine@@QEAA_NXZ)
+C:\Users\Derick\source\repos\GDENG03_Villegas\x64\Debug\GDENG03_Villegas.exe : fatal error LNK1120: 1 unresolved externals
