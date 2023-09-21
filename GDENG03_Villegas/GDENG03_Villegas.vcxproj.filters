@@ -1,70 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="App">
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{92d894b4-2ebb-4770-9341-2935f8cebaa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{db9ffb78-6657-4c87-ac94-904b089215b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{cb9fc665-fc9a-459b-b808-17f6ff284b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App">
       <UniqueIdentifier>{933a2db0-d2c4-428f-a4a6-864ffc38e282}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine">
-      <UniqueIdentifier>{93dae443-e58e-4182-9114-ccd4ed05cb50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine">
+    <Filter Include="Source Files\GraphicsEngine">
       <UniqueIdentifier>{dc61382a-9b4c-4827-9af0-6355711c8cfc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\DeviceContext">
+    <Filter Include="Source Files\GraphicsEngine\DeviceContext">
       <UniqueIdentifier>{f8594d96-d646-4124-9aa7-171dcf7c7704}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\SwapChain">
+    <Filter Include="Source Files\GraphicsEngine\SwapChain">
       <UniqueIdentifier>{cb8d5e81-6d15-4a66-ac85-1b59d7a1ef93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\WindowSystem">
+    <Filter Include="Source Files\WindowSystem">
       <UniqueIdentifier>{513c1b91-1e5b-40b1-a489-ab0630c5d535}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils">
+    <Filter Include="Source Files\GraphicsEngine\VertexBuffer">
+      <UniqueIdentifier>{6a51e4f5-0e06-4d16-ace4-d18b5a1014eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{08b51a2e-75a4-44f4-85be-d4cfac843875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{07d5de9d-9ffb-4dec-bf59-2e36b0293947}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>App</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>GameEngine\WindowSystem</Filter>
+      <Filter>Source Files\WindowSystem</Filter>
     </ClCompile>
     <ClCompile Include="AppWindow.cpp">
-      <Filter>App</Filter>
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsEngine.cpp">
-      <Filter>GameEngine\GraphicsEngine</Filter>
+      <Filter>Source Files\GraphicsEngine</Filter>
     </ClCompile>
     <ClCompile Include="DeviceContext.cpp">
-      <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
+      <Filter>Source Files\GraphicsEngine\DeviceContext</Filter>
     </ClCompile>
     <ClCompile Include="SwapChain.cpp">
-      <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
+      <Filter>Source Files\GraphicsEngine\SwapChain</Filter>
     </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>Source Files\GraphicsEngine\VertexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>GameEngine\WindowSystem</Filter>
-    </ClInclude>
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="AppWindow.h">
-      <Filter>App</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsEngine.h">
-      <Filter>GameEngine\GraphicsEngine</Filter>
+      <Filter>Source Files\App</Filter>
     </ClInclude>
     <ClInclude Include="DeviceContext.h">
-      <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
+      <Filter>Source Files\GraphicsEngine\DeviceContext</Filter>
     </ClInclude>
     <ClInclude Include="SwapChain.h">
-      <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
+      <Filter>Source Files\GraphicsEngine\SwapChain</Filter>
     </ClInclude>
-    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="GraphicsEngine.h">
+      <Filter>Source Files\GraphicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Source Files\GraphicsEngine\VertexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Source Files\WindowSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">
-      <Filter>GameEngine</Filter>
+      <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

@@ -5,6 +5,9 @@
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
 
+#include "Quad.h"
+#include <vector>
+
 class AppWindow : public Window
 {
 public:
@@ -16,6 +19,7 @@ public:
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
 private:
+	std::vector<Quad> quadList;
 	SwapChain* m_swap_chain;
-	VertexBuffer* m_vb;
+	//VertexBuffer* m_vb;
 };

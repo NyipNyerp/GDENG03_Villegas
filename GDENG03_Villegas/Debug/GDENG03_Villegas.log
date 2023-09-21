@@ -1,8 +1,2 @@
 ﻿  AppWindow.cpp
-  DeviceContext.cpp
-  GraphicsEngine.cpp
-  SwapChain.cpp
-  VertexBuffer.cpp
-  main.cpp
-  Generating Code...
   GDENG03_Villegas.vcxproj -> C:\Users\Derick\source\repos\GDENG03_Villegas\Debug\GDENG03_Villegas.exe
