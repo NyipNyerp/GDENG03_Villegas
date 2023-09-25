@@ -43,6 +43,10 @@
       <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
     </ClCompile>
     <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="ConstantBuffer.cpp" />
+    <ClCompile Include="EngineTime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -61,10 +65,16 @@
       <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
     </ClInclude>
     <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="VertexShader.h" />
+    <ClInclude Include="PixelShader.h" />
+    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="EngineTime.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">
       <Filter>GameEngine</Filter>
     </FxCompile>
+    <FxCompile Include="PixelShader.hlsl" />
+    <FxCompile Include="VertexShader.hlsl" />
   </ItemGroup>
 </Project>
