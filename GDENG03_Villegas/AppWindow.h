@@ -28,4 +28,10 @@ private:
 	unsigned long m_old_time = 0;
 	float m_delta_time = 0;
 	float m_angle = 0;
+	float m_time = 0;
+
+	float duration = 5;
+	float ticks = 0;
+	float multiplier = 1;
+	float change = 1;
 };

@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "EngineTime.h"
 
 //Window* window=nullptr;
 
@@ -87,13 +88,15 @@ bool Window::init()
 	//set this flag to true to indicate that the window is initialized and running
 	m_is_run = true;
 
-
+	EngineTime::initialize();
 
 	return true;
 }
 
 bool Window::broadcast()
 {
+	EngineTime::logFrameStart();
+
 	MSG msg;
 
 	this->onUpdate();
@@ -105,6 +108,8 @@ bool Window::broadcast()
 	}
 
 	Sleep(1);
+
+	EngineTime::logFrameEnd();
 
 	return true;
 }

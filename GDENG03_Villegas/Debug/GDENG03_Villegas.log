@@ -1,2 +1,5 @@
-﻿  EngineTime.cpp
+﻿  AppWindow.cpp
+C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\AppWindow.cpp(99,35): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\AppWindow.cpp(106,23): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\AppWindow.cpp(109,23): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
   GDENG03_Villegas.vcxproj -> C:\Users\Derick\source\repos\GDENG03_Villegas\Debug\GDENG03_Villegas.exe

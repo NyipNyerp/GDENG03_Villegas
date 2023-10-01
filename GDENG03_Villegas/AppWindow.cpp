@@ -1,6 +1,7 @@
 #include "AppWindow.h"
 #include <Windows.h>
-
+#include "EngineTime.h"
+#include <iostream>
 
 struct vec3
 {
@@ -20,6 +21,7 @@ __declspec(align(16))
 struct constant
 {
 	float m_angle;
+	float m_time;
 };
 
 
@@ -69,6 +71,7 @@ void AppWindow::onCreate()
 
 	constant cc;
 	cc.m_angle = 0;
+	cc.m_time = 0;
 
 	m_cb = GraphicsEngine::get()->createConstantBuffer();
 	m_cb->load(&cc, sizeof(constant));
@@ -92,8 +95,23 @@ void AppWindow::onUpdate()
 	m_old_time = ::GetTickCount();
 
 	m_angle += 1.57f * m_delta_time;
+
+	ticks += EngineTime::getDeltaTime();
+	if (ticks >= duration)
+	{
+		change *= -1;
+		ticks = 0;
+		
+	}
+	multiplier += change * EngineTime::getDeltaTime();
+
+	std::cout << "multiplier: " << multiplier << std::endl;
+	m_time += multiplier * EngineTime::getDeltaTime();
+
+
 	constant cc;
 	cc.m_angle = m_angle;
+	cc.m_time = m_time;
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 
