@@ -4,14 +4,21 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+
+#include <vector>
+#include "Cube.h"
 
 class AppWindow : public Window
 {
 public:
 	AppWindow();
+
+	void updateQuadPosition();
+
 	~AppWindow();
 
 	// Inherited via Window
@@ -24,14 +31,15 @@ private:
 	VertexShader* m_vs;
 	PixelShader* m_ps;
 	ConstantBuffer* m_cb;
+	IndexBuffer* m_ib;
+private:
+	std::vector<Cube*> cubeList;
 
-	unsigned long m_old_time = 0;
-	float m_delta_time = 0;
-	float m_angle = 0;
-	float m_time = 0;
+	long m_old_delta;
+	long m_new_delta;
+	float m_delta_time;
 
-	float duration = 5;
-	float ticks = 0;
-	float multiplier = 1;
-	float change = 1;
+	float m_delta_pos;
+	float m_delta_scale;
+	float m_delta_rot;
 };
