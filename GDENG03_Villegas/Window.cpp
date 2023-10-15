@@ -25,7 +25,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 		window->onCreate();
 		break;
 	}
-
+	case WM_SETFOCUS:
+	{
+		// Event fired when the window get focus
+		Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		window->onFocus();
+		break;
+	}
+	case WM_KILLFOCUS:
+	{
+		// Event fired when the window lost focus
+		Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		window->onKillFocus();
+		break;
+	}
 	case WM_DESTROY:
 	{
 		// Event fired when the window is destroyed
@@ -88,15 +101,14 @@ bool Window::init()
 	//set this flag to true to indicate that the window is initialized and running
 	m_is_run = true;
 
-	EngineTime::initialize();
 
+	EngineTime::initialize();
 	return true;
 }
 
 bool Window::broadcast()
 {
 	EngineTime::logFrameStart();
-
 	MSG msg;
 
 	this->onUpdate();
@@ -110,7 +122,6 @@ bool Window::broadcast()
 	Sleep(1);
 
 	EngineTime::logFrameEnd();
-
 	return true;
 }
 
@@ -152,6 +163,14 @@ void Window::onUpdate()
 void Window::onDestroy()
 {
 	m_is_run = false;
+}
+
+void Window::onFocus()
+{
+}
+
+void Window::onKillFocus()
+{
 }
 
 Window::~Window()

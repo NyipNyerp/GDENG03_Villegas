@@ -17,7 +17,10 @@ public:
 
 	void update(float deltaTime) override;
 	void draw(VertexShader* vertexShader, PixelShader* pixelShader) override;
-	void setAnimSPeed(float speed);
+	void setAnimSpeed(float speed);
+
+	float speed = 10.0f;
+
 
 private:
 	VertexBuffer* m_vb;
@@ -28,6 +31,5 @@ private:
 	float deltaPos = 0.0f;
 	float deltaScale = 0.0f;
 	float deltaTime = 0.0f;
-	float speed = 10.0f;
 };
 

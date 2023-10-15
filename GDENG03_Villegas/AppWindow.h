@@ -1,5 +1,6 @@
 #pragma once
 #include "Window.h"
+#include "InputListener.h"
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
 #include "DeviceContext.h"
@@ -12,12 +13,10 @@
 #include <vector>
 #include "Cube.h"
 
-class AppWindow : public Window
+class AppWindow : public Window, public InputListener
 {
 public:
 	AppWindow();
-
-	void updateQuadPosition();
 
 	~AppWindow();
 
@@ -25,21 +24,30 @@ public:
 	virtual void onCreate() override;
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
-private:
-	SwapChain* m_swap_chain;
-	VertexBuffer* m_vb;
-	VertexShader* m_vs;
-	PixelShader* m_ps;
-	ConstantBuffer* m_cb;
-	IndexBuffer* m_ib;
+
+
+	virtual void onKeyDown(int key) override;
+	virtual void onKeyUp(int key) override;
+
+	virtual void onMouseMove(const Point deltaPos);
+
+	virtual void onLeftMouseDown(const Point deltaPos);
+	virtual void onLeftMouseUp(const Point deltaPos);
+
+	virtual void onRightMouseDown(const Point deltaPos);
+	virtual void onRightMouseUp(const Point deltaPos);
+
 private:
 	std::vector<Cube*> cubeList;
 
-	long m_old_delta;
-	long m_new_delta;
-	float m_delta_time;
+	SwapChain* m_swap_chain;
 
-	float m_delta_pos;
-	float m_delta_scale;
-	float m_delta_rot;
+	VertexBuffer* m_vb;
+	ConstantBuffer* m_cb;
+	IndexBuffer* m_ib;
+
+	VertexShader* m_vs;
+	PixelShader* m_ps;
+
+	float multiplier = 0.1f;
 };

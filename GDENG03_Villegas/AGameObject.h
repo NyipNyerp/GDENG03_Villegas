@@ -35,6 +35,7 @@ protected:
 	Vector3D m_position;
 	Vector3D m_scale;
 	Vector3D m_rotation;
+	Matrix4x4 m_matrix;
 
 };
 

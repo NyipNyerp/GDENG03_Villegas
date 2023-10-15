@@ -11,5 +11,5 @@ C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\Matrix4x4.h(54,20
 C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\AppWindow.cpp(172,40): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Derick\source\repos\GDENG03_Villegas\GDENG03_Villegas\AppWindow.cpp(154,40): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   GDENG03_Villegas.vcxproj -> C:\Users\Derick\source\repos\GDENG03_Villegas\Debug\GDENG03_Villegas.exe

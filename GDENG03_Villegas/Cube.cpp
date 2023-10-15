@@ -79,22 +79,44 @@ void Cube::update(float deltaTime)
 
 	Matrix4x4 temp;
 
+	Matrix4x4 allMatrix; allMatrix.setIdentity();
+	Matrix4x4 translationMatrix; translationMatrix.setTranslation(this->getLocalPosition());
+	Matrix4x4 scaleMatrix; scaleMatrix.setScale(this->getLocalScale());
+	//Vector3D rotation = this->getLocalRotation();
+	//Matrix4x4 zMatrix; zMatrix.setRotationZ(rotation.m_z);
+	//Matrix4x4 xMatrix; xMatrix.setRotationX(rotation.m_x);
+	//Matrix4x4 yMatrix; yMatrix.setRotationY(rotation.m_y);
+	//// Combine x-y-z rotation matrices into one.
+	//Matrix4x4 rotMatrix; rotMatrix.setIdentity();
+	//rotMatrix *= xMatrix;
+	//rotMatrix *= yMatrix;
+	//rotMatrix *= zMatrix;
+	//Scale --> Rotate --> Translate as recommended order.
+	allMatrix *= scaleMatrix;
+	//allMatrix *= rotMatrix;
+
+
+
 	this->deltaScale += EngineTime::getDeltaTime() * this->speed;
 
-	cc.m_world.setIdentity();
-	cc.m_world.setScale(Vector3D(1, 1, 1));
+	//cc.m_world.setScale(m_scale);
+	//cc.m_world.setTranslation(m_position);
 
 	temp.setIdentity();
 	temp.setRotationZ(this->deltaScale);
-	cc.m_world *= temp;
+	allMatrix *= temp;
 
 	temp.setIdentity();
 	temp.setRotationY(this->deltaScale);
-	cc.m_world *= temp;
+	allMatrix *= temp;
 
 	temp.setIdentity();
 	temp.setRotationX(this->deltaScale);
-	cc.m_world *= temp;
+	allMatrix *= temp;
+
+	allMatrix *= translationMatrix;
+
+	cc.m_world = allMatrix;
 
 	float height = 3;
 	float width = 2;
@@ -131,7 +153,7 @@ void Cube::draw(VertexShader* vertexShader, PixelShader* pixelShader)
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 }
 
-void Cube::setAnimSPeed(float speed)
+void Cube::setAnimSpeed(float speed)
 {
 	this->speed = speed;
 }

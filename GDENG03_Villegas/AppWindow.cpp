@@ -1,6 +1,7 @@
 #include "AppWindow.h"
 #include <Windows.h>
 #include "Vector3D.h"
+#include "InputSystem.h"
 #include "Matrix4x4.h"
 #include "Utils.h"
 #include "EngineTime.h"
@@ -10,55 +11,6 @@ AppWindow::AppWindow()
 {
 }
 
-void AppWindow::updateQuadPosition()
-{
-	Constant cc;
-	cc.m_time = ::GetTickCount();
-
-	m_delta_pos += m_delta_time / 10.0f;
-	if (m_delta_pos > 1.0f)
-		m_delta_pos = 0;
-
-
-	Matrix4x4 temp;
-
-	m_delta_scale += m_delta_time / 0.55f;
-
-	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
-
-	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f,1.5f, 0), m_delta_pos));
-
-	//cc.m_world *= temp;
-
-	cc.m_world.setScale(Vector3D(1, 1, 1));
-
-	temp.setIdentity();
-	temp.setRotationZ(m_delta_scale);
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setRotationY(m_delta_scale);
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setRotationX(m_delta_scale);
-	cc.m_world *= temp;
-
-
-	cc.m_view.setIdentity();
-	cc.m_proj.setOrthoLH
-	(
-		(this->getClientWindowRect().right - this->getClientWindowRect().left) / 300.0f,
-		(this->getClientWindowRect().bottom - this->getClientWindowRect().top) / 300.0f,
-		-4.0f,
-		4.0f
-	);
-
-
-	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
-}
-
-
 AppWindow::~AppWindow()
 {
 }
@@ -67,21 +19,49 @@ void AppWindow::onCreate()
 {
 	Window::onCreate();
 	GraphicsEngine::get()->init();
+	InputSystem::initialize();
+	InputSystem::getInstance()->addListener(this);
+
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	float multiplier = 0.1f;
-	for (int i = 0; i < 50; i++)
+	for (int i = 1; i <= 10; i++)
 	{
-		std::string name = "cube_" + std::to_string(i+1);
+		std::string name = "cube_" + std::to_string(i);
 		Cube* cube = new Cube(name);
-		cube->setPosition(i * multiplier, i * multiplier, i * multiplier);
-		cube->setScale(i * multiplier, i * multiplier, i * multiplier);
-		cube->setAnimSPeed(i * multiplier);
+		float tempMult = i * multiplier;
+		cube->setScale(0 + tempMult, 0 + tempMult, 0 + tempMult);
+		cube->setPosition(0 + tempMult, 0 + tempMult, 0 + tempMult);
+		cube->setAnimSpeed(1 + (tempMult * multiplier));
+
+		//multiplier *= -1;
+		cout << cube->getName() << endl;
 		this->cubeList.push_back(cube);
 	}
+
+	/*float multiplier = 0.35f;
+	for (int i = 0; i < 5; i++)
+	{
+		float x = MathUtils::randomFloat(-0.75, 0.75f);
+		float y = MathUtils::randomFloat(-0.75, 0.75f);
+		float z = MathUtils::randomFloat(-0.75, 0.75f);
+
+		std::string name = "cube_" + std::to_string(i + 1);
+		Cube* cube = new Cube(name);
+		cube->setPosition(0,0, i * multiplier);
+		cube->setScale(0.25, 0.25, 0.25);
+		cube->setAnimSpeed(5 * multiplier);
+		this->cubeList.push_back(cube);
+
+		multiplier *= -1;
+
+
+		cout << cube->getName() << ".x = " << cube->getLocalPosition().m_x << "    random_x = " << x << endl;
+		cout << cube->getName() << ".y = " << cube->getLocalPosition().m_y << "    random_y = " << y << endl;
+		cout << cube->getName() << ".z = " << cube->getLocalPosition().m_z << "    random_z = " << z << endl << endl;
+	}*/
 
 	//Vertex vertex_list[] =
 	//{
@@ -164,13 +144,19 @@ void AppWindow::onUpdate()
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
+	InputSystem::getInstance()->update();
 
 	//updateQuadPosition();
+
 
 	for (Cube* cube : cubeList)
 	{
 		cube->update(EngineTime::getDeltaTime());
 		cube->draw(m_vs, m_ps);
+
+		/*cout << cube->getName() << ".x = " << cube->getLocalPosition().m_x << "   scale_x = " << cube->getLocalScale().m_x << endl;
+		cout << cube->getName() << ".y = " << cube->getLocalPosition().m_y << "   scale_y = " << cube->getLocalScale().m_y << endl;
+		cout << cube->getName() << ".z = " << cube->getLocalPosition().m_z << "   scale_z = " << cube->getLocalScale().m_z << endl << endl;*/
 	}
 	//
 	//GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
@@ -193,11 +179,6 @@ void AppWindow::onUpdate()
 
 	m_swap_chain->present(true);
 
-
-	m_old_delta = m_new_delta;
-	m_new_delta = ::GetTickCount();
-
-	m_delta_time = (m_old_delta) ? ((m_new_delta - m_old_delta) / 1000.0f) : 0;
 }
 
 void AppWindow::onDestroy()
@@ -210,4 +191,47 @@ void AppWindow::onDestroy()
 	m_vs->release();
 	m_ps->release();
 	GraphicsEngine::get()->release();
+}
+
+void AppWindow::onKeyDown(int key)
+{
+	//cout << "onkeydown:\n";
+	if (InputSystem::getInstance()->isKeyDown('W'))
+	{
+		cout << "W pressed\n";
+		multiplier *= -1;
+		cout << "keyDown multiplier = " << multiplier << endl;
+	}
+}
+
+void AppWindow::onKeyUp(int key)
+{
+	//cout << "onkeyup:\n";
+	if (InputSystem::getInstance()->isKeyUp('W'))
+	{
+		cout << "W released\n";
+		multiplier *= -1;
+		cout << "keyUp multiplier = " << multiplier << endl;
+	}
+}
+
+void AppWindow::onMouseMove(const Point deltaPos)
+{
+	//cout << " mouse moved: " << deltaPos.m_x << ", " << deltaPos.m_y << "\n";
+}
+
+void AppWindow::onLeftMouseDown(const Point deltaPos)
+{
+}
+
+void AppWindow::onLeftMouseUp(const Point deltaPos)
+{
+}
+
+void AppWindow::onRightMouseDown(const Point deltaPos)
+{
+}
+
+void AppWindow::onRightMouseUp(const Point deltaPos)
+{
 }

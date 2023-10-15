@@ -78,6 +78,7 @@
     <ClCompile Include="AGameObject.cpp">
       <Filter>GameEngine\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="InputSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -129,6 +130,13 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Prerequisites.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="InputListener.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
       <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
