@@ -19,9 +19,6 @@
     <Filter Include="GameEngine\WindowSystem">
       <UniqueIdentifier>{513c1b91-1e5b-40b1-a489-ab0630c5d535}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{08b51a2e-75a4-44f4-85be-d4cfac843875}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\GraphicsEngine\Buffers">
       <UniqueIdentifier>{97358320-479d-483b-8ac0-f0e3c6172eb3}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,12 @@
     </Filter>
     <Filter Include="GameEngine\Objects\Primitives">
       <UniqueIdentifier>{272a4164-91b9-4599-96b7-d52350dd17f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\InputSystem">
+      <UniqueIdentifier>{eb23d211-cdcc-4d8b-8a58-051a602a3c00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{08b51a2e-75a4-44f4-85be-d4cfac843875}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +81,9 @@
     <ClCompile Include="AGameObject.cpp">
       <Filter>GameEngine\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -121,23 +126,28 @@
       <Filter>GameEngine\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Matrix4x4.h">
-      <Filter>Utils</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D.h">
-      <Filter>Utils</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
-      <Filter>Utils</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Prerequisites.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="InputSystem.h" />
-    <ClInclude Include="InputListener.h">
-      <Filter>Utils</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Point.h">
-      <Filter>Utils</Filter>
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="InputListener.h">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4D.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

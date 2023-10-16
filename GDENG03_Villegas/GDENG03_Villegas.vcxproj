@@ -162,6 +162,7 @@
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="Vector4D.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="Window.h" />

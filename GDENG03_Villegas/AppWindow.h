@@ -17,25 +17,27 @@ class AppWindow : public Window, public InputListener
 {
 public:
 	AppWindow();
-
 	~AppWindow();
+
+	//void updateCamera();
 
 	// Inherited via Window
 	virtual void onCreate() override;
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
 
+	virtual void onFocus() override;
+	virtual void onKillFocus() override;
 
+	// Inherited via InputListener
 	virtual void onKeyDown(int key) override;
 	virtual void onKeyUp(int key) override;
+	virtual void onMouseMove(const Point& mouse_pos) override;
 
-	virtual void onMouseMove(const Point deltaPos);
-
-	virtual void onLeftMouseDown(const Point deltaPos);
-	virtual void onLeftMouseUp(const Point deltaPos);
-
-	virtual void onRightMouseDown(const Point deltaPos);
-	virtual void onRightMouseUp(const Point deltaPos);
+	virtual void onLeftMouseDown(const Point& mouse_pos) override;
+	virtual void onLeftMouseUp(const Point& mouse_pos) override;
+	virtual void onRightMouseDown(const Point& mouse_pos) override;
+	virtual void onRightMouseUp(const Point& mouse_pos) override;
 
 private:
 	std::vector<Cube*> cubeList;
@@ -49,5 +51,14 @@ private:
 	VertexShader* m_vs;
 	PixelShader* m_ps;
 
-	float multiplier = 0.1f;
+	bool flipAnim = false;
+
+	/*float m_rot_x = 0.0f;
+	float m_rot_y = 0.0f;
+
+	float m_scale_cube = 1.0f;
+	float m_forward = 0.0f;
+	float m_rightward = 0.0f;
+
+	Matrix4x4 m_world_cam;*/
 };

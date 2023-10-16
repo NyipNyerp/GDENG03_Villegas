@@ -77,11 +77,10 @@ void Cube::update(float deltaTime)
 {
 	Constant cc;
 
-	Matrix4x4 temp;
-
 	Matrix4x4 allMatrix; allMatrix.setIdentity();
 	Matrix4x4 translationMatrix; translationMatrix.setTranslation(this->getLocalPosition());
 	Matrix4x4 scaleMatrix; scaleMatrix.setScale(this->getLocalScale());
+	Matrix4x4 rotationMatrix;
 	//Vector3D rotation = this->getLocalRotation();
 	//Matrix4x4 zMatrix; zMatrix.setRotationZ(rotation.m_z);
 	//Matrix4x4 xMatrix; xMatrix.setRotationX(rotation.m_x);
@@ -95,34 +94,55 @@ void Cube::update(float deltaTime)
 	allMatrix *= scaleMatrix;
 	//allMatrix *= rotMatrix;
 
-
-
 	this->deltaScale += EngineTime::getDeltaTime() * this->speed;
 
 	//cc.m_world.setScale(m_scale);
 	//cc.m_world.setTranslation(m_position);
 
-	temp.setIdentity();
-	temp.setRotationZ(this->deltaScale);
-	allMatrix *= temp;
+	rotationMatrix.setIdentity();
+	rotationMatrix.setRotationZ(this->deltaScale);
+	allMatrix *= rotationMatrix;
 
-	temp.setIdentity();
-	temp.setRotationY(this->deltaScale);
-	allMatrix *= temp;
+	rotationMatrix.setIdentity();
+	rotationMatrix.setRotationY(this->deltaScale);
+	allMatrix *= rotationMatrix;
 
-	temp.setIdentity();
-	temp.setRotationX(this->deltaScale);
-	allMatrix *= temp;
+	rotationMatrix.setIdentity();
+	rotationMatrix.setRotationX(this->deltaScale);
+	allMatrix *= rotationMatrix;
 
 	allMatrix *= translationMatrix;
 
 	cc.m_world = allMatrix;
 
+
+
+	Matrix4x4 temp;
+
+	Matrix4x4 world_cam;
+	world_cam.setIdentity();
+
+	temp.setIdentity();
+	temp.setRotationX(m_cam_rot_x);
+	world_cam *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(m_cam_rot_y);
+	world_cam *= temp;
+
+
+	Vector3D new_pos = m_world_cam.getTranslation() + world_cam.getZDirection() * (m_cam_forward * 0.1f);
+	new_pos = new_pos + world_cam.getXDirection() * (m_cam_rightward * 0.1f);
+	world_cam.setTranslation(new_pos);
+	m_world_cam = world_cam;
+	world_cam.inverse();
+
+	cc.m_view = world_cam;
+
 	float height = 3;
 	float width = 2;
 
-
-	cc.m_view.setIdentity();
+	//cc.m_view.setIdentity();
 	cc.m_proj.setOrthoLH
 	(
 		width,
@@ -130,7 +150,7 @@ void Cube::update(float deltaTime)
 		-4.0f,
 		4.0f
 	);
-
+	cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 }
@@ -156,4 +176,59 @@ void Cube::draw(VertexShader* vertexShader, PixelShader* pixelShader)
 void Cube::setAnimSpeed(float speed)
 {
 	this->speed = speed;
+}
+
+float Cube::getAnimSpeed()
+{
+	return this->speed;
+}
+
+void Cube::setCameraRotX(float xRotation)
+{
+	this->m_cam_rot_x = xRotation;
+}
+
+void Cube::setCameraRotY(float yRotation)
+{
+	this->m_cam_rot_y = yRotation;
+}
+
+void Cube::setCameraScaleCube(float scaleCube)
+{
+	this->m_cam_scale_cube = scaleCube;
+}
+
+void Cube::setCameraForward(float forward)
+{
+	this->m_cam_forward = forward;
+}
+
+void Cube::setCameraRightward(float rightward)
+{
+	this->m_cam_rightward = rightward;
+}
+
+float Cube::getCameraRotX()
+{
+	return this->m_cam_rot_x;
+}
+
+float Cube::getCameraRotY()
+{
+	return this->m_cam_rot_y;
+}
+
+float Cube::getCameraScaleCube()
+{
+	return this->m_cam_scale_cube;
+}
+
+float Cube::getCameraForward()
+{
+	return this->m_cam_forward;
+}
+
+float Cube::getCameraRightward()
+{
+	return this->m_cam_rightward;
 }
