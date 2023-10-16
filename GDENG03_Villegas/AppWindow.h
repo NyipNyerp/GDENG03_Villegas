@@ -51,7 +51,7 @@ private:
 	VertexShader* m_vs;
 	PixelShader* m_ps;
 
-	bool flipAnim = false;
+	//bool flipAnim = false;
 
 	/*float m_rot_x = 0.0f;
 	float m_rot_y = 0.0f;

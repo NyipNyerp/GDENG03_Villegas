@@ -97,7 +97,7 @@ void AppWindow::onCreate()
 	//}
 
 	float multiplier = 0.35f;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		float x = MathUtils::randomFloat(-0.75, 0.75f);
 		float y = MathUtils::randomFloat(-0.75, 0.75f);
@@ -107,7 +107,7 @@ void AppWindow::onCreate()
 		Cube* cube = new Cube(name);
 		cube->setPosition(x,y,z);
 		cube->setScale(0.25, 0.25, 0.25);
-		cube->setAnimSpeed(multiplier);
+		cube->setAnimSpeed(i * multiplier);
 		cube->normSpeed = cube->getAnimSpeed();
 		cube->flipSpeed = cube->getAnimSpeed() * -1;
 
@@ -154,8 +154,8 @@ void AppWindow::onUpdate()
 
 	for (Cube* cube : cubeList)
 	{
-		if (!flipAnim) cube->setAnimSpeed(cube->normSpeed);
-		else cube->setAnimSpeed(cube->flipSpeed);
+		//if (!flipAnim) cube->setAnimSpeed(cube->normSpeed);
+		//else cube->setAnimSpeed(cube->flipSpeed);
 		cube->update(EngineTime::getDeltaTime());
 		cube->draw(m_vs, m_ps);
 		//cout << cube->getName() << " speed: " << cube->getAnimSpeed() << endl;
@@ -195,24 +195,26 @@ void AppWindow::onKeyDown(int key)
 	if (key == 'W')
 	{
 		std::cout << "W pressed\n";
-		flipAnim = true;
+		//flipAnim = true;
 		//m_rot_x += 3.14f*m_delta_time;
 		//m_forward = 1.0f;
 
 		for (Cube* cube : cubeList)
 		{
+			cube->setAnimSpeed(cube->normSpeed);
 			cube->setCameraForward(1.0f);
 		}
 	}
 	else if (key == 'S')
 	{
 		std::cout << "S pressed\n";
-		flipAnim = false;
+		//flipAnim = false;
 		//m_rot_x -= 3.14f*m_delta_time;
 		//m_forward = -1.0f;
 
 		for (Cube* cube : cubeList)
 		{
+			cube->setAnimSpeed(cube->flipSpeed);
 			cube->setCameraForward(-1.0f);
 		}
 	}
@@ -246,6 +248,7 @@ void AppWindow::onKeyUp(int key)
 	//m_rightward = 0.0f;
 	for (Cube* cube : cubeList)
 	{
+		cube->setAnimSpeed(0.0f);
 		cube->setCameraForward(0.0f);
 		cube->setCameraRightward(0.0f);
 	}
@@ -277,39 +280,23 @@ void AppWindow::onMouseMove(const Point& mouse_pos)
 void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 {
 	//m_scale_cube = 0.5f;
-
-	for (Cube* cube : cubeList)
-	{
-		cube->setCameraScaleCube(0.5f);
-	}
+	std::cout << "LMB_Down" << std::endl;
 }
 
 void AppWindow::onLeftMouseUp(const Point& mouse_pos)
 {
 	//m_scale_cube = 1.0f;
-
-	for (Cube* cube : cubeList)
-	{
-		cube->setCameraScaleCube(1.0f);
-	}
+	std::cout << "LMB_Up" << std::endl;
 }
 
 void AppWindow::onRightMouseDown(const Point& mouse_pos)
 {
 	//m_scale_cube = 2.0f;
-
-	for (Cube* cube : cubeList)
-	{
-		cube->setCameraScaleCube(2.0f);
-	}
+	std::cout << "RMB_Down" << std::endl;
 }
 
 void AppWindow::onRightMouseUp(const Point& mouse_pos)
 {
 	//m_scale_cube = 1.0f;
-
-	for (Cube* cube : cubeList)
-	{
-		cube->setCameraScaleCube(1.0f);
-	}
+	std::cout << "RMB_Up" << std::endl;
 }

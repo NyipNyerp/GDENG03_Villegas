@@ -78,27 +78,11 @@ void Cube::update(float deltaTime)
 	Constant cc;
 
 	Matrix4x4 allMatrix; allMatrix.setIdentity();
-	Matrix4x4 translationMatrix; translationMatrix.setTranslation(this->getLocalPosition());
-	Matrix4x4 scaleMatrix; scaleMatrix.setScale(this->getLocalScale());
-	Matrix4x4 rotationMatrix;
-	//Vector3D rotation = this->getLocalRotation();
-	//Matrix4x4 zMatrix; zMatrix.setRotationZ(rotation.m_z);
-	//Matrix4x4 xMatrix; xMatrix.setRotationX(rotation.m_x);
-	//Matrix4x4 yMatrix; yMatrix.setRotationY(rotation.m_y);
-	//// Combine x-y-z rotation matrices into one.
-	//Matrix4x4 rotMatrix; rotMatrix.setIdentity();
-	//rotMatrix *= xMatrix;
-	//rotMatrix *= yMatrix;
-	//rotMatrix *= zMatrix;
-	//Scale --> Rotate --> Translate as recommended order.
-	allMatrix *= scaleMatrix;
-	//allMatrix *= rotMatrix;
+	allMatrix.setScale(this->getLocalScale());
 
 	this->deltaScale += EngineTime::getDeltaTime() * this->speed;
 
-	//cc.m_world.setScale(m_scale);
-	//cc.m_world.setTranslation(m_position);
-
+	Matrix4x4 rotationMatrix;
 	rotationMatrix.setIdentity();
 	rotationMatrix.setRotationZ(this->deltaScale);
 	allMatrix *= rotationMatrix;
@@ -111,10 +95,9 @@ void Cube::update(float deltaTime)
 	rotationMatrix.setRotationX(this->deltaScale);
 	allMatrix *= rotationMatrix;
 
-	allMatrix *= translationMatrix;
+	allMatrix.setTranslation(this->getLocalPosition());
 
 	cc.m_world = allMatrix;
-
 
 
 	Matrix4x4 temp;
@@ -143,13 +126,13 @@ void Cube::update(float deltaTime)
 	float width = 2;
 
 	//cc.m_view.setIdentity();
-	cc.m_proj.setOrthoLH
+	/*cc.m_proj.setOrthoLH
 	(
 		width,
 		height,
 		-4.0f,
 		4.0f
-	);
+	);*/
 	cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
