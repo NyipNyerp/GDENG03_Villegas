@@ -37,6 +37,24 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{08b51a2e-75a4-44f4-85be-d4cfac843875}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IMGUI">
+      <UniqueIdentifier>{29f5a681-4b41-44ec-ac58-e2d1f51fc7aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\UISystem">
+      <UniqueIdentifier>{f474e014-eefc-4c94-ba63-9929dae4940b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\UISystem\UIFeatures">
+      <UniqueIdentifier>{b91cb38f-d4ef-49d4-bc4a-867d21a8162d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Objects\Camera">
+      <UniqueIdentifier>{3a45db2a-3a4c-49b0-9c4c-d3ac69ecf5b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\PhysicsEngine">
+      <UniqueIdentifier>{055a8449-70d6-4c56-b739-501c3a8ce104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\ComponentSystem">
+      <UniqueIdentifier>{907bdf1e-c9cd-444f-9f0f-9a8f0f3726d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +101,63 @@
     </ClCompile>
     <ClCompile Include="InputSystem.cpp">
       <Filter>GameEngine\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_demo.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_draw.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_impl_dx11.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_impl_win32.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_tables.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_widgets.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>GameEngine\Objects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>App\UISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="UIHierarchy.cpp">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="UIInspector.cpp">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="UIToolbar.cpp">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="UIProfiler.cpp">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>GameEngine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameEngine\Objects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>GameEngine\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>GameEngine\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="AComponent.cpp">
+      <Filter>GameEngine\ComponentSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseComponentSystem.cpp">
+      <Filter>GameEngine\ComponentSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +224,69 @@
     <ClInclude Include="Vector4D.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="IMGUI\imconfig.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_impl_dx11.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_impl_win32.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_internal.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imstb_rectpack.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imstb_textedit.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imstb_truetype.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>GameEngine\Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>App\UISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AUIScreen.h">
+      <Filter>App\UISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="UIHierarchy.h">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClInclude>
+    <ClInclude Include="UIInspector.h">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClInclude>
+    <ClInclude Include="UIToolbar.h">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClInclude>
+    <ClInclude Include="UIProfiler.h">
+      <Filter>App\UISystem\UIFeatures</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>GameEngine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GameEngine\Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>GameEngine\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>GameEngine\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="AComponent.h">
+      <Filter>GameEngine\ComponentSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseComponentSystem.h">
+      <Filter>GameEngine\ComponentSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">
@@ -160,5 +298,8 @@
     <FxCompile Include="VertexShader.hlsl">
       <Filter>GameEngine\GraphicsEngine\Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imgui.ini" />
   </ItemGroup>
 </Project>
