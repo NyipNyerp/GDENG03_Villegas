@@ -1,27 +1,52 @@
 #pragma once
 #include "InputListener.h"
-#include <unordered_set>
+#include <vector>
+#include <Windows.h>
 #include "Point.h"
 
-class InputSystem
-{
+class InputSystem{
 public:
-	InputSystem();
-	~InputSystem();
 
-	void update();
-	void addListener(InputListener* listener);
-	void removeListener(InputListener* listener);
+    static InputSystem* getInstance();
+    static void initialize();
+    static void destroy();
 
-	void setCursorPosition(const Point& pos);
-	void showCursor(bool show);
+    void addListener(InputListener* listener);
+    void removeListener(InputListener* listener);
 
-public:
-	static InputSystem* get();
+    void setCursorPosition(const Point& pos);
+    void showCursor(bool show);
+
+    void update();
+
+    bool isKeyDown(int key);
+    bool isKeyUp(int key);
+
+
 private:
-	std::unordered_set<InputListener*> m_set_listeners;
-	unsigned char m_keys_state[256] = {};
-	unsigned char m_old_keys_state[256] = {};
-	Point m_old_mouse_pos;
-	bool m_first_time = true;
+
+    static InputSystem* sharedInstance;
+
+    void callOnKeyDown(int key);
+    void callOnKeyUp(int key);
+
+    Point oldMousePos;
+    bool firstTimeCall = true;
+
+    void callOnMouseMove(Point deltaPt);
+    void callOnLeftMouseDown(Point deltaPt);
+    void callOnLeftMouseUp(Point deltaPt);
+    void callOnRightMouseDown(Point deltaPt);
+    void callOnRightMouseUp(Point deltaPt);
+
+    std::vector<InputListener*> inputListenerList;
+
+    unsigned char keyStates[256] = {};
+    unsigned char oldkeyStates[256] = {};
+
+    InputSystem();
+    ~InputSystem();
+    InputSystem(InputSystem const&) {};
+    InputSystem& operator=(InputSystem const&) {};
+
 };

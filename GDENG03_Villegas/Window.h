@@ -1,4 +1,5 @@
 #pragma once
+#define NOMINMAX // to avoid conflict with Windows.h Min and Max declarations
 #include <Windows.h>
 
 

@@ -1,6 +1,8 @@
 #include "Window.h"
 #include "EngineTime.h"
+#include "imgui.h"
 
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 //Window* window=nullptr;
 
 Window::Window()
@@ -11,6 +13,9 @@ Window::Window()
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam))
+		return true;
+
 	//GetWindowLong(hwnd,)
 	switch (msg)
 	{
