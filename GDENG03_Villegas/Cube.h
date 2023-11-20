@@ -15,14 +15,15 @@ public:
 	Cube(std::string name);
 	~Cube();
 
-	void update(float deltaTime) override;
-	void draw(VertexShader* vertexShader, PixelShader* pixelShader) override;
+	void update() override;
+	void draw() override;
+	void destroy();
 	void setAnimSpeed(float speed);
 	float getAnimSpeed();
 
 
 
-	void setCameraRotX(float xRotation);
+	/*void setCameraRotX(float xRotation);
 	void setCameraRotY(float yRotation);
 	void setCameraScaleCube(float scaleCube);
 	void setCameraForward(float forward);
@@ -32,7 +33,7 @@ public:
 	float getCameraRotY();
 	float getCameraScaleCube();
 	float getCameraForward();
-	float getCameraRightward();
+	float getCameraRightward();*/
 
 
 
@@ -44,19 +45,22 @@ private:
 	IndexBuffer* m_ib;
 	ConstantBuffer* m_cb;
 
+	VertexShader* m_vs;
+	PixelShader* m_ps;
+
 	float ticks = 0.0f;
-	float deltaPos = 0.0f;
+	float duration = 4.0f;
+
 	float deltaScale = 0.0f;
-	float deltaTime = 0.0f;
 	float speed = 10.0f;
 
-	float m_cam_rot_x = 0.0f;
+	/*float m_cam_rot_x = 0.0f;
 	float m_cam_rot_y = 0.0f;
 
 	float m_cam_scale_cube = 1.0f;
 	float m_cam_forward = 0.0f;
 	float m_cam_rightward = 0.0f;
 
-	Matrix4x4 m_world_cam;
+	Matrix4x4 m_world_cam;*/
 };
 

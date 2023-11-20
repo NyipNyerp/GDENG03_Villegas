@@ -1,6 +1,5 @@
 #pragma once
 #include "Window.h"
-#include "InputListener.h"
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
 #include "DeviceContext.h"
@@ -10,55 +9,45 @@
 #include "VertexShader.h"
 #include "PixelShader.h"
 
-#include <vector>
+#include "InputListener.h"
+#include "GameObjectManager.h"
+#include "CameraManager.h"
+#include "UIManager.h"
 #include "Cube.h"
 
-class AppWindow : public Window, public InputListener
+#include "imgui.h"
+
+#include "reactphysics3d/reactphysics3d.h"
+
+#include <vector>
+
+using namespace reactphysics3d;
+
+
+
+class AppWindow : public Window
 {
+public:
+	static AppWindow* getInstance();
+	static void initialize();
+	static void destroy();
+
 public:
 	AppWindow();
 	~AppWindow();
 
-	//void updateCamera();
+	AppWindow(AppWindow const&) {};
+	AppWindow& operator=(AppWindow const&) {};
+	static AppWindow* sharedInstance;
+
 
 	// Inherited via Window
 	virtual void onCreate() override;
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
 
-	virtual void onFocus() override;
-	virtual void onKillFocus() override;
-
-	// Inherited via InputListener
-	virtual void onKeyDown(int key) override;
-	virtual void onKeyUp(int key) override;
-	virtual void onMouseMove(const Point& mouse_pos) override;
-
-	virtual void onLeftMouseDown(const Point& mouse_pos) override;
-	virtual void onLeftMouseUp(const Point& mouse_pos) override;
-	virtual void onRightMouseDown(const Point& mouse_pos) override;
-	virtual void onRightMouseUp(const Point& mouse_pos) override;
-
 private:
-	std::vector<Cube*> cubeList;
-
 	SwapChain* m_swap_chain;
 
-	VertexBuffer* m_vb;
-	ConstantBuffer* m_cb;
-	IndexBuffer* m_ib;
-
-	VertexShader* m_vs;
-	PixelShader* m_ps;
-
-	//bool flipAnim = false;
-
-	/*float m_rot_x = 0.0f;
-	float m_rot_y = 0.0f;
-
-	float m_scale_cube = 1.0f;
-	float m_forward = 0.0f;
-	float m_rightward = 0.0f;
-
-	Matrix4x4 m_world_cam;*/
+	ImVec4 clear_color = ImVec4(0.25f, 0.25f, 0.25f, 1.00f);
 };
