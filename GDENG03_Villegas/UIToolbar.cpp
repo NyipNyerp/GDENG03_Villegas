@@ -49,6 +49,16 @@ void UIToolbar::drawUI()
                 // Create Physics Cube Object
                 GameObjectManager::getInstance()->create("Physics_Cube", PHYSICS_CUBE);
             }
+
+            if (ImGui::MenuItem("Create Multiple Physics Cube", NULL))
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    GameObjectManager::getInstance()->create("Physics_Cube", PHYSICS_CUBE);
+                }
+                // Create Physics Cube Object
+            }
+
             if (ImGui::MenuItem("Create Physics Plane", NULL))
             {
                 // Create Physics Plane Object

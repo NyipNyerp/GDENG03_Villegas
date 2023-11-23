@@ -63,10 +63,11 @@ AGameObject* GameObjectManager::create(std::string name, PrimitiveType primType)
 	else if (primType == PHYSICS_PLANE)
 	{
 		obj = new Cube(name);
-		obj->setScale(64.0f, 0.1f, 64.0f);
+		obj->setScale(30.0f, 0.1f, 30.0f);
 		obj->setPosition(0, -10, 0);
 		PhysicsComponent* physicsCube = new PhysicsComponent(obj->getName(), obj);
 		physicsCube->getRigidBody()->setType(BodyType::STATIC);
+		obj->setRotation(Vector3D(0, 0, 0));
 		std::cout << "Physics Plane created" << std::endl;
 	}
 	else if (primType == PHYSICS_CUBE)

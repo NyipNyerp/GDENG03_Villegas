@@ -15,33 +15,12 @@
 #include "PhysicsSystem.h"
 
 
-AppWindow* AppWindow::sharedInstance = NULL;
-
 AppWindow::AppWindow()
 {
 }
 
 AppWindow::~AppWindow()
 {
-}
-
-AppWindow* AppWindow::getInstance()
-{
-	return sharedInstance;
-}
-
-void AppWindow::initialize()
-{
-	sharedInstance = new AppWindow();
-	sharedInstance->init();
-}
-
-void AppWindow::destroy()
-{
-	if (sharedInstance != NULL)
-	{
-		sharedInstance->release();
-	}
 }
 
 void AppWindow::onCreate()

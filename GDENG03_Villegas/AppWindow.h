@@ -28,11 +28,6 @@ using namespace reactphysics3d;
 class AppWindow : public Window
 {
 public:
-	static AppWindow* getInstance();
-	static void initialize();
-	static void destroy();
-
-public:
 	AppWindow();
 	~AppWindow();
 

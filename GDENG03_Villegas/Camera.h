@@ -26,17 +26,14 @@ public:
 private:
 	void updateViewMatrix();
 
-	bool canMoveCamera = false;
+	float ticks = 0.0f;
+	float mouseDown = false;
 
-	float m_cam_rot_x = 0.0f;
-	float m_cam_rot_y = 0.0f;
+	Vector3D forwardDirection;
+	Vector3D backwardDirection;
+	Matrix4x4 viewMatrix;
+	//float forwardDirection = 0.0f;
+	//Matrix4x4 worldCameraMatrix;
 
-	float m_cam_scale_cube = 1.0f;
-	float m_cam_forward = 0.0f;
-	float m_cam_rightward = 0.0f;
-
-	float speed = 0.1f;
-	float mouse_sensitivity = 0.01f;
-
-	Matrix4x4 m_view_cam;
+	bool canCameraMove = true;
 };

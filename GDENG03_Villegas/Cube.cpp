@@ -21,7 +21,7 @@ Cube::Cube(std::string name):AGameObject(name)
 		{ Vector3D(-0.5f, 0.5f, 0.5f),			Vector3D(0,1,1),	Vector3D(0.0f,0.25f,0.25f) },
 		{ Vector3D(-0.5f, -0.5f, 0.5f),			Vector3D(0,0,1),	Vector3D(0.0f,0.0f,0.25f) },
 	};
-
+	
 	m_vb = GraphicsEngine::get()->createVertexBuffer();
 	UINT size_list = ARRAYSIZE(quadList);
 
@@ -108,19 +108,18 @@ void Cube::update()
 
 	allMatrix.setScale(this->getLocalScale());
 
-	/*Matrix4x4 rotationMatrix;
+	Matrix4x4 rotationMatrix;
 	rotationMatrix.setIdentity();
-	rotationMatrix.setRotationZ(this->deltaScale);
+	rotationMatrix.setRotationZ(this->m_rotation.m_z);
 	allMatrix *= rotationMatrix;
 
 	rotationMatrix.setIdentity();
-	rotationMatrix.setRotationY(this->deltaScale);
+	rotationMatrix.setRotationY(this->m_rotation.m_y);
 	allMatrix *= rotationMatrix;
 
 	rotationMatrix.setIdentity();
-	rotationMatrix.setRotationX(this->deltaScale);
-	allMatrix *= rotationMatrix;*/
-
+	rotationMatrix.setRotationX(this->m_rotation.m_x);
+	allMatrix *= rotationMatrix;
 	allMatrix.setTranslation(this->getLocalPosition());
 
 	cc.m_world = allMatrix;
